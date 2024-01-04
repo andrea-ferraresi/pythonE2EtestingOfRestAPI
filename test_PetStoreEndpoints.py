@@ -7,19 +7,20 @@ import rest_client_initialization_and_actions
 
 
 def test_getPetsWhichAreSold():
-    response = rest_client_initialization_and_actions.RestClientInitializationAndActions.getPetsWhichAre("sold")
+    rest_client = instantiate_a_client()
+    response = rest_client.getPetsWhichAre("sold")
     assert response.status_code==200
-    print(response)
-
-    print("me")
-
-    print(response.json())
-
-
+    #print(response.json())
+    
     # Store JSON data in API_Data
     API_Data = response.json()
 
-    listOfPets = API_Data.values(["id"])
 
-    print(listOfPets)
+
+
+
+def instantiate_a_client():
+    rest_client = rest_client_initialization_and_actions.RestClientInitializationAndActions()
+    return rest_client
+
     

@@ -15,7 +15,7 @@ class RestClientInitializationAndActions:
 
 
     
-    def getPetsWhichAre(status):
+    def getPetsWhichAre(self, status):
         response = requests.get(ENDPOINT + "/pet/findByStatus?status=" + status)
         return response
 
