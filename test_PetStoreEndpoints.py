@@ -1,13 +1,13 @@
 import requests
 import json
 import pytest
+#import sys
+#sys.path.insert(0,"..")
+import rest_client_initialization_and_actions
 
 
-ENDPOINT = 'https://petstore.swagger.io/v2/pet/findByStatus?status=sold'
-
-
-def test_get_endpoint():
-    response = requests.get(ENDPOINT)
+def test_getPetsWhichAreSold():
+    response = rest_client_initialization_and_actions.RestClientInitializationAndActions.getPetsWhichAre("sold")
     assert response.status_code==200
     print(response)
 
