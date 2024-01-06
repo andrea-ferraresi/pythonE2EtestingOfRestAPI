@@ -6,12 +6,28 @@ import pytest
 import rest_client_initialization_and_actions
 
 
+@pytest.mark.skip(reason="skip while developing other tests")
 def test_getPetsWhichAreSold():
-    rest_client = instantiate_a_client()
-    response = rest_client.getPetsWhichAre("sold")
+    client_of_the_application = initialise_a_client_of_the_application()
+    response = client_of_the_application.getPetsWhichAre("sold")
     assert response.status_code==200
     #print(response.json())
+
+    # Store JSON data in API_Data
+    API_Data = response.json()
+
+
+
+def test_addPetToTheStore():
+    client_of_the_application = initialise_a_client_of_the_application()
+    response = client_of_the_application.addPetToTheStore(
+                                             "name_of_pet", 
+                                             "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png")
+    print(response.json())
     
+    assert response.status_code==200
+    #print(response.json())
+
     # Store JSON data in API_Data
     API_Data = response.json()
 
@@ -19,7 +35,8 @@ def test_getPetsWhichAreSold():
 
 
 
-def instantiate_a_client():
+
+def initialise_a_client_of_the_application():
     rest_client = rest_client_initialization_and_actions.RestClientInitializationAndActions()
     return rest_client
 
